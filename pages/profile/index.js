@@ -1,7 +1,11 @@
 import { getSession } from "next-auth/react";
 import Layout from "../../components/profile/layout";
 export default function profile({ user, tab }) {
-  return <Layout session={user.user} tab={tab}></Layout>;
+  const country= {
+        name: "IN",
+        flag: "https://cdn.ipregistry.co/flags/emojitwo/in.svg",
+      }
+  return <Layout session={user.user} tab={tab} country={country}></Layout>;
 }
 
 export async function getServerSideProps(ctx) {
@@ -9,6 +13,10 @@ export async function getServerSideProps(ctx) {
   const session = await getSession({ req });
   const tab = query.tab || 0;
   return {
-    props: { user: session, tab },
+    props: {
+      user: session,
+      tab,
+   
+    },
   };
 }

@@ -13,7 +13,7 @@ import axios from "axios";
 import jwt from "jsonwebtoken";
 import { getSession } from "next-auth/react";
 import { signIn } from "next-auth/react";
-export default function reset({ userId }) {
+export default function reset({ userId,country }) {
   console.log(userId);
   const [password, setPassword] = useState("");
   const [conf_password, setConf_Password] = useState("");
@@ -53,7 +53,7 @@ export default function reset({ userId }) {
   return (
     <>
       {loading && <DotLoaderSpinner loading={loading} />}
-      <Header country="" />
+      <Header country={country} />
       <div className={styles.forgot}>
         <div>
           <div className={styles.forgot__header}>
@@ -101,7 +101,7 @@ export default function reset({ userId }) {
           </Formik>
         </div>
       </div>
-      <Footer country="" />
+      <Footer country={country} />
     </>
   );
 }
@@ -118,9 +118,14 @@ export async function getServerSideProps(context) {
   }
   const token = query.token;
   const userId = jwt.verify(token, process.env.RESET_TOKEN_SECRET);
+  const data = await axios
+    .get("https://api.ipregistry.co/?key=4glor7xgmb5fobmg")
+    .then((res) => res.data.location.country)
+    .catch((err) => console.log(err));
   return {
     props: {
       userId: userId.id,
+      country: { name: data.name, flag: data.flag.emojitwo },
     },
   };
 }

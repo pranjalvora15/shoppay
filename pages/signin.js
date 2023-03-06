@@ -13,7 +13,7 @@ import {
   getProviders,
   getSession,
   signIn,
-  country,
+  // country,
 } from "next-auth/react";
 import axios from "axios";
 import DotLoaderSpinner from "../components/loaders/dotLoader";
@@ -29,7 +29,7 @@ const initialvalues = {
   error: "",
   login_error: "",
 };
-export default function signin({ providers, callbackUrl, csrfToken }) {
+export default function signin({ providers, callbackUrl, csrfToken,country }) {
   console.log(providers);
   const [loading, setLoading] = useState(false);
   const [user, setUser] = useState(initialvalues);
@@ -117,10 +117,10 @@ export default function signin({ providers, callbackUrl, csrfToken }) {
       return Router.push(callbackUrl || "/");
     }
   };
-  const country = {
-    name: "Morocco",
-    flag: "https://cdn-icons-png.flaticon.com/512/197/197551.png?w=360",
-  };
+  // const country = {
+  //   name: "Morocco",
+  //   flag: "https://cdn-icons-png.flaticon.com/512/197/197551.png?w=360",
+  // };
   return (
     <>
       {loading && <DotLoaderSpinner loading={loading} />}
@@ -265,7 +265,7 @@ export default function signin({ providers, callbackUrl, csrfToken }) {
           </div>
         </div>
       </div>
-      <Footer country="Morocco" />
+      <Footer country={country}/>
     </>
   );
 }
@@ -289,10 +289,15 @@ export async function getServerSideProps(context) {
   }
   const csrfToken = await getCsrfToken(context);
   const providers = Object.values(await getProviders());
+  const data = await axios
+  .get("https://api.ipregistry.co/?key=4glor7xgmb5fobmg")
+  .then((res) => res.data.location.country)
+  .catch((err) => console.log(err));
   return {
     props: {
       providers,
       csrfToken,
+      country: { name: data.name, flag: data.flag.emojitwo },
       // callbackUrl,
     },
   };

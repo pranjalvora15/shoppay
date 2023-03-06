@@ -6,8 +6,12 @@ import styles from "../../styles/profile.module.scss";
 import { useState } from "react";
 export default function addresses({ user, tab }) {
   const [addresses, setAddresses] = useState(user.address.address);
+  const country= {
+    name: "IN",
+    flag: "https://cdn.ipregistry.co/flags/emojitwo/in.svg",
+  }
   return (
-    <Layout session={user.user} tab={tab}>
+    <Layout session={user.user} tab={tab} country={country}>
       <div className={styles.header}>
         <h1>MY ADDRESSES</h1>
       </div>

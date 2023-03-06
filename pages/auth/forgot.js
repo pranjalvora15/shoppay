@@ -38,10 +38,14 @@ export default function forget() {
       setError(error.response.data.message);
     }
   };
+  const country = {
+    name: "IN",
+    flag: "https://cdn.ipregistry.co/flags/emojitwo/in.svg",
+  };
   return (
     <>
       {loading && <DotLoaderSpinner loading={loading} />}
-      <Header country="" />
+      <Header country={country} />
       <div className={styles.forgot}>
         <div>
           <div className={styles.forgot__header}>
@@ -82,7 +86,7 @@ export default function forget() {
           </Formik>
         </div>
       </div>
-      <Footer country="" />
+      <Footer country={country} />
     </>
   );
 }

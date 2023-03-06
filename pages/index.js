@@ -74,19 +74,19 @@ export default function Home({ country, products }) {
 export async function getServerSideProps() {
   db.connectDb();
   let products = await Product.find().sort({ createdAt: -1 }).lean();
-  // const data = await axios
-  //   .get("https://api.ipregistry.co/?key=4glor7xgmb5fobmg")
-  //   .then((res) => res.data.location.country)
-  //   .catch((err) => console.log(err));
+  const data = await axios
+    .get("https://api.ipregistry.co/?key=4glor7xgmb5fobmg")
+    .then((res) => res.data.location.country)
+    .catch((err) => console.log(err));
   // console.log(data);
   return {
     props: {
-      // country: { name: data.name, flag: data.flag.emojitwo },
+      country: { name: data.name, flag: data.flag.emojitwo },
       products: JSON.parse(JSON.stringify(products)),
-      country: {
-        name: "IN",
-        flag: "https://cdn.ipregistry.co/flags/emojitwo/in.svg",
-      },
+      // country: {
+      //   name: "IN",
+      //   flag: "https://cdn.ipregistry.co/flags/emojitwo/in.svg",
+      // },
     },
   };
 }

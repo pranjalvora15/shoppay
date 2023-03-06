@@ -10,8 +10,12 @@ import { FiExternalLink } from "react-icons/fi";
 import slugify from "slugify";
 export default function orders({ user, tab, orders }) {
   const router = useRouter();
+  const country= {
+    name: "IN",
+    flag: "https://cdn.ipregistry.co/flags/emojitwo/in.svg",
+  }
   return (
-    <Layout session={user.user} tab={tab}>
+    <Layout session={user.user} tab={tab} country={country}>
       <Head>
         <title>Orders</title>
       </Head>

@@ -25,6 +25,7 @@ handler.post(async (req, res) => {
       message: "Please check your email inbox to reset password",
     });
   } catch (error) {
+    console.log(error);
     res.status(500).json({ message: error.message });
   }
 });

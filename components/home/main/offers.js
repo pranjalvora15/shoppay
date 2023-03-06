@@ -19,7 +19,7 @@ export default function Offers() {
         <p>
           use code <b>“SHOPPAY30”</b> for 30% off all products.
         </p>
-        <Link href="/browse">Shop now</Link>
+        <Link href="/">Shop now</Link>
       </div>
       <Swiper
         slidesPerView={3}

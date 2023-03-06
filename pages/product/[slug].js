@@ -11,13 +11,13 @@ import { useState } from "react";
 import Infos from "../../components/productPage/infos";
 import Reviews from "../../components/productPage/reviews";
 import ProductsSwiper from "../../components/productsSwiper";
-
-export default function product({ product, related }) {
+import axios from "axios";
+export default function product({ product, related, country }) {
   const [activeImg, setActiveImg] = useState("");
-  const country = {
-    name: "Morocco",
-    flag: "https://cdn-icons-png.flaticon.com/512/197/197551.png?w=360",
-  };
+  // const country = {
+  //   name: "Morocco",
+  //   flag: "https://cdn-icons-png.flaticon.com/512/197/197551.png?w=360",
+  // };
   return (
     <>
       <Head>
@@ -37,9 +37,8 @@ export default function product({ product, related }) {
             <Infos product={product} setActiveImg={setActiveImg} />
           </div>
           <Reviews product={product} />
-          {/*
-          <ProductsSwiper products={related} />
-          */}
+
+          {/* <ProductsSwiper products={related} /> */}
         </div>
       </div>
     </>
@@ -135,10 +134,15 @@ export async function getServerSideProps(context) {
     ).toFixed(1);
   }
   db.disconnectDb();
+  const data = await axios
+    .get("https://api.ipregistry.co/?key=4glor7xgmb5fobmg")
+    .then((res) => res.data.location.country)
+    .catch((err) => console.log(err));
   return {
     props: {
       product: JSON.parse(JSON.stringify(newProduct)),
       related: JSON.parse(JSON.stringify(related)),
+      country: { name: data.name, flag: data.flag.emojitwo },
     },
   };
 }

@@ -14,6 +14,10 @@ export default function security({ user, tab }) {
   const [conf_password, setConf_password] = useState("");
   const [success, setSuccess] = useState("");
   const [error, setError] = useState("");
+  const country= {
+    name: "IN",
+    flag: "https://cdn.ipregistry.co/flags/emojitwo/in.svg",
+  }
   const validate = Yup.object({
     current_password: Yup.string()
       .required(
@@ -45,7 +49,7 @@ export default function security({ user, tab }) {
     }
   };
   return (
-    <Layout session={user.user} tab={tab}>
+    <Layout session={user.user} tab={tab} country={country}>
       <Head>
         <title>Profile - Security</title>
       </Head>

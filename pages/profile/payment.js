@@ -11,6 +11,10 @@ export default function payment({ user, tab, defaultPaymentMethod }) {
   const [dbPM, setDbPM] = useState(defaultPaymentMethod);
   const [paymentMethod, setPaymentMethod] = useState(defaultPaymentMethod);
   const [error, setError] = useState("");
+  const country= {
+    name: "IN",
+    flag: "https://cdn.ipregistry.co/flags/emojitwo/in.svg",
+  }
   const handlePM = async () => {
     try {
       const { data } = await axios.put("/api/user/changePM", {
@@ -24,7 +28,7 @@ export default function payment({ user, tab, defaultPaymentMethod }) {
     }
   };
   return (
-    <Layout session={user.user} tab={tab}>
+    <Layout session={user.user} tab={tab} country={country}>
       <div className={styles.header}>
         <h1>MY PAYMENT METHODS</h1>
       </div>

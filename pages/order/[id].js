@@ -26,6 +26,7 @@ export default function order({
   orderData,
   paypal_client_id,
   stripe_public_key,
+  country
 }) {
   const [{ isPending }, paypalDispatch] = usePayPalScriptReducer();
   const [dispatch] = useReducer(reducer, {
@@ -86,7 +87,7 @@ export default function order({
   }
   return (
     <>
-      <Header country="country" />
+      <Header country={country} />
       <div className={styles.order}>
         <div className={styles.container}>
           <div className={styles.order__infos}>
@@ -282,11 +283,16 @@ export async function getServerSideProps(context) {
   let paypal_client_id = process.env.PAYPAL_CLIENT_ID;
   let stripe_public_key = process.env.STRIPE_PUBLIC_KEY;
   db.disconnectDb();
+  const data = await axios
+    .get("https://api.ipregistry.co/?key=4glor7xgmb5fobmg")
+    .then((res) => res.data.location.country)
+    .catch((err) => console.log(err));
   return {
     props: {
       orderData: JSON.parse(JSON.stringify(order)),
       paypal_client_id,
       stripe_public_key,
+      country: { name: data.name, flag: data.flag.emojitwo },
     },
   };
 }
