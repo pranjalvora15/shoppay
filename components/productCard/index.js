@@ -36,7 +36,7 @@ export default function ProductCard({ product }) {
   return (
     <div className={styles.product}>
       <div className={styles.product__container}>
-        <a href={`/product/${product.slug}?style=${active}`} target="_blank">
+        <a href={`/product/${product.slug}?style=${active}`} target="_blank" rel="noreferrer">
           <div>
             <ProductSwiper images={images} />
           </div>
@@ -64,6 +64,7 @@ export default function ProductCard({ product }) {
               styless.map((style, i) =>
                 style.image ? (
                   <img
+                  key={i}
                     src={style.image}
                     className={i == active && styles.active}
                     onMouseOver={() => {
@@ -74,6 +75,7 @@ export default function ProductCard({ product }) {
                   />
                 ) : (
                   <span
+                  key={i}
                     style={{ backgroundColor: `${style.color}` }}
                     onMouseOver={() => {
                       setImages(product.subProducts[i].images);

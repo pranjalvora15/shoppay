@@ -13,8 +13,8 @@ export default function Products({ cart }) {
         </span>
       </div>
       <div className={styles.products__wrap}>
-        {cart.products.map((product) => (
-          <div className={styles.product}>
+        {cart.products.map((product,i) => (
+          <div className={styles.product} key={i}>
             <div className={styles.product__img}>
               <img src={product.image} alt="" />
               <div className={styles.product__infos}>

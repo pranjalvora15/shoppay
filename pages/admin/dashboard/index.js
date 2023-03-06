@@ -93,8 +93,8 @@ export default function Dashboard({ users, orders, products }) {
                 </tr>
               </thead>
               <tbody>
-                {orders.map((order) => (
-                  <tr>
+                {orders.map((order,i) => (
+                  <tr key={i}>
                     <td>{order.user.name}</td>
                     <td>{order.total} $</td>
                     <td>
@@ -140,8 +140,8 @@ export default function Dashboard({ users, orders, products }) {
             </div>
             <table>
               <tbody>
-                {users.map((user) => (
-                  <tr>
+                {users.map((user,i) => (
+                  <tr key={i}>
                     <td className={styles.user}>
                       <div className={styles.user__img}>
                         <img src={user.image} alt="" />

@@ -41,7 +41,7 @@ export default function Review({ review }) {
       <div className={styles.flex}>
         <div className={styles.review__images}>
           {review.images.length > 0 &&
-            review.images.map((img) => <img src={img?.url} alt="" />)}
+            review.images.map((img,i) => <img src={img?.url} alt="" key={i} />)}
         </div>
         <div className={styles.review__extra}>
           <div className={styles.review__extra_likes}>

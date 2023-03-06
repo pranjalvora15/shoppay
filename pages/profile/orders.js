@@ -59,8 +59,8 @@ export default function Orders({ user, tab, orders }) {
             </tr>
           </thead>
           <tbody>
-            {orders.map((order) => (
-              <tr>
+            {orders.map((order,i) => (
+              <tr key={i}>
                 <td>{order._id}</td>
                 <td className={styles.orders__images}>
                   {order.products.map((p) => (
