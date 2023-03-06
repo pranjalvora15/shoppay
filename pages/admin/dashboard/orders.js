@@ -3,7 +3,7 @@ import CollapsibleTable from "../../../components/admin/orders/table";
 import db from "@/utlis/db";
 import Order from "../../../models/Order";
 import User from "../../../models/User";
-export default function orders({ orders }) {
+export default function Orders({ orders }) {
   return (
     <Layout>
       <CollapsibleTable rows={orders} />

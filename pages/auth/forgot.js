@@ -10,7 +10,7 @@ import * as Yup from "yup";
 import Link from "next/link";
 import DotLoaderSpinner from "../../components/loaders/dotLoader";
 import axios from "axios";
-export default function forget() {
+export default function Forget() {
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState("");
   const [error, setError] = useState("");

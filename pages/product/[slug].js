@@ -12,7 +12,7 @@ import Infos from "../../components/productPage/infos";
 import Reviews from "../../components/productPage/reviews";
 import ProductsSwiper from "../../components/productsSwiper";
 import axios from "axios";
-export default function product({ product, related, country }) {
+export default function Product({ product, related, country }) {
   const [activeImg, setActiveImg] = useState("");
   // const country = {
   //   name: "Morocco",

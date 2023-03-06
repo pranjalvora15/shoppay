@@ -22,7 +22,7 @@ function reducer(state, action) {
       return { ...state, loading: false, success: false, error: false };
   }
 }
-export default function order({
+export default function Order({
   orderData,
   paypal_client_id,
   stripe_public_key,

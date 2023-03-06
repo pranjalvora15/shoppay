@@ -13,7 +13,7 @@ import axios from "axios";
 import jwt from "jsonwebtoken";
 import { getSession } from "next-auth/react";
 import { signIn } from "next-auth/react";
-export default function reset({ userId,country }) {
+export default function Reset({ userId,country }) {
   console.log(userId);
   const [password, setPassword] = useState("");
   const [conf_password, setConf_Password] = useState("");

@@ -1,6 +1,6 @@
 import { getSession } from "next-auth/react";
 import Layout from "../../components/profile/layout";
-export default function profile({ user, tab }) {
+export default function Profile({ user, tab }) {
   const country= {
         name: "IN",
         flag: "https://cdn.ipregistry.co/flags/emojitwo/in.svg",
