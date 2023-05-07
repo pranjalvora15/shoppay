@@ -11,3 +11,5 @@ Feature of this website
       orders and it's status, payment related status of customer
       like paid or unpaid orders and managing coupons. Admin can also see all users
     - User cannot visit admin routes so routes are protected
+    - From the IP adsress of user country name is shown.
+    - User can also set new password by clicking on forgot password
